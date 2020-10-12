@@ -11,21 +11,19 @@
 </template>
 
 <script>
+    import {useToggle} from "../composition/toggle";
+
+
     export default {
         name: "PostDetails",
         props: {
             current: Object
         },
-        data() {
-            return {
-                visible: false,
-            }
-        },
 
-        methods: {
-            toggle() {
-                this.visible = !this.visible;
-            }
+        setup() {
+            return {
+                ...useToggle()
+            };
         },
 
         watch: {

@@ -1,44 +1,52 @@
 <template>
     <div>
         <div v-if="visible">
-            <input  v-model="title" /><br>
-            <input v-model="description"><br>
+            <input  v-model="form.title" /><br>
+            <input v-model="form.description"><br>
         </div>
-        <button @click="addPost">Save</button>
+        <button v-if="isValid" @click="addPost">Save</button>
         <button @click="toggle">{{ visible ? 'Hide': 'Show'}}</button>
     </div>
 </template>
 
 <script>
-    import toggle from "../mixins/toggle";
+    import {useToggle} from "../composition/toggle";
+    import {usePostForm} from "../composition/postForm";
+
     export default {
         name: "PostForm",
 
-        mixins: [toggle],
+        setup(props, {emit}) {
 
-        data() {
             return {
-                title: '',
-                description: '',
-               // visible: true,
-            }
+                ...useToggle(),
+                ...usePostForm(emit)
+            };
         },
 
-        methods: {
-            // toggle() {
-            //     this.visible = !this.visible;
-            // },
-
-            addPost() {
-                this.$emit('new', {
-                    title: this.title,
-                    description: this.description
-                });
-
-                this.title = '';
-                this.description = '';
-            }
-        }
+        // data() {
+        //     return {
+        //         title: '',
+        //         description: '',
+        //        // visible: true,
+        //     }
+        // },
+        //
+        // methods: {
+        //     // toggle() {
+        //     //     this.visible = !this.visible;
+        //     // },
+        //
+        //     addPost() {
+        //         this.$emit('new', {
+        //             title: this.title,
+        //             description: this.description
+        //         });
+        //
+        //         this.title = '';
+        //         this.description = '';
+        //     }
+        // }
     }
 </script>
 

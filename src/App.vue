@@ -8,6 +8,7 @@
 import PostList from "./components/PostList";
 import PostDetails from "./components/PostDetails";
 import PostForm from "./components/PostForm";
+import {usePosts} from "./composition/posts";
 
 export default {
   name: 'App',
@@ -17,24 +18,9 @@ export default {
     PostForm
   },
 
-  data() {
+  setup() {
     return {
-      posts: [],
-      current: null,
-    }
-  },
-
-  methods: {
-    addPost({title, description}) {
-      this.posts.push({title, description});
-    },
-
-    changeCurrent(post) {
-      this.current = post;
-    },
-
-    deletePost(title) {
-      this.posts = this.posts.filter(post => post.title !== title);
+      ...usePosts()
     }
   }
 }

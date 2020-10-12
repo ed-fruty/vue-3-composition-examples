@@ -1,9 +1,11 @@
 <template>
     <div>
-        <input  v-model="title" /><br>
-        <input v-model="description"><br>
-        <button>Save</button>
-        <button>{{ visible ? 'Hide': 'Show'}}</button>
+        <div v-if="visible">
+            <input  v-model="title" /><br>
+            <input v-model="description"><br>
+        </div>
+        <button @click="addPost">Save</button>
+        <button @click="toggle">{{ visible ? 'Hide': 'Show'}}</button>
     </div>
 </template>
 
@@ -16,6 +18,22 @@
                 title: '',
                 description: '',
                 visible: true,
+            }
+        },
+
+        methods: {
+            toggle() {
+                this.visible = !this.visible;
+            },
+
+            addPost() {
+                this.$emit('new', {
+                    title: this.title,
+                    description: this.description
+                });
+
+                this.title = '';
+                this.description = '';
             }
         }
     }

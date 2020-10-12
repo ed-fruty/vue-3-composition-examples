@@ -2,8 +2,11 @@
    <div>
        <div v-if="posts.length > 0">
            <ul>
-               <li v-for="post in posts" :key="post.title">
-                   {{ post.title }}
+               <li  v-for="post in posts" :key="post.title">
+                   <a href="#"
+                      @click.prevent="$emit('current', post)">
+                       {{ post.title }}
+                   </a>
                </li>
            </ul>
        </div>
@@ -20,6 +23,10 @@
             posts: {
                 default: []
             }
+        },
+
+        methods: {
+
         }
     }
 </script>

@@ -1,5 +1,6 @@
 # vue-composition
 #3a6514f  - Init state
+#a6912c1  - Vue style
 ## Project setup
 ```
 npm install

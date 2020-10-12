@@ -10,21 +10,24 @@
 </template>
 
 <script>
+    import toggle from "../mixins/toggle";
     export default {
         name: "PostForm",
+
+        mixins: [toggle],
 
         data() {
             return {
                 title: '',
                 description: '',
-                visible: true,
+               // visible: true,
             }
         },
 
         methods: {
-            toggle() {
-                this.visible = !this.visible;
-            },
+            // toggle() {
+            //     this.visible = !this.visible;
+            // },
 
             addPost() {
                 this.$emit('new', {

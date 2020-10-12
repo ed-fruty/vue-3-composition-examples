@@ -1,15 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <post-form />
+  <post-list class="col" />
+  <post-details class="col" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PostList from "./components/PostList";
+import PostDetails from "./components/PostDetails";
+import PostForm from "./components/PostForm";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    PostList,
+    PostDetails,
+    PostForm
   }
 }
 </script>
@@ -23,4 +28,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+ .col {
+   width: 50%;
+   float: left;
+ }
 </style>
